@@ -73,10 +73,13 @@ class HomeView extends StatelessWidget {
                child: Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.r,),
-                  child: Image.asset("assets/images/profiles.jpg",
+                  child: Image( 
+                    image: AssetImage("assets/images/p2.jpeg" ,
+                  ), 
                   height: 600.h,
                   width: 400.w,
-                  fit: BoxFit.cover,),
+                  fit: BoxFit.cover,)
+                
                 ),
                 ),
                ),
@@ -130,7 +133,7 @@ class HomeView extends StatelessWidget {
                   ),
             100.verticalSpace,
             SizedBox(
-              height: 600.h,
+              height: 800.h,
               child: ListView.separated(  
                  scrollDirection: Axis.horizontal,       
                  separatorBuilder: (context,index){
