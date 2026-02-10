@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends StatelessWidget {
    HomeView({super.key});
@@ -8,49 +9,66 @@ class HomeView extends StatelessWidget {
       "market": "Pakistan",
       "image": "assets/images/kfc_logo.png",
       "AppType": "Mobile Application",
+      "url": "https://play.google.com/store/apps/details?id=io.bramerz.kfc&hl=en",
     },
     {
       "market": "Oman",
       "image": "assets/images/kfc_logo.png",
       "AppType": "Mobile Application",
+      "url":"https://play.google.com/store/apps/details?id=com.kfc.oman",
     },
     {
       "market": "Morocco",
       "image": "assets/images/kfc_logo.png",
       "AppType": "Mobile Application",
+      "url":"https://play.google.com/store/apps/details?id=com.kfc.morocco",
     },
       {
       "market": "Pakistan",
       "image": "assets/images/kfc_logo.png",
       "AppType": "KIOSK",
+      "url": "",
     },
     {
       "market": "Pakistan",
       "image": "assets/images/pizza_hut.png",
       "AppType": "Mobile Application",
+      "url":"https://play.google.com/store/apps/details?id=com.pizzahut.pakistan&hl=en",
     },
     {
       "market": "South Africa",
       "image": "assets/images/pizza_hut.png",
       "AppType": "Mobile Application",
+      "url": "https://play.google.com/store/search?q=pizza%20hut%20south%20africa&c=apps&hl=en",
     },
     {
       "market": "Qatar",
       "image": "assets/images/pizza_hut.png",
       "AppType": "Mobile Application",
+      "url":"https://play.google.com/store/search?q=pizza+hut+qatar&c=apps&hl=en",
     },
   
     {
       "market": "Pakistan",
       "image": "assets/images/pizza_hut.png",
       "AppType": "KIOSK",
+       "url": "",
     },
     {
       "market": "Johnny & Jugnu",
       "image": "assets/images/j&j.jpg",
       "AppType": "KIOSK",
+       "url": "",
     },
   ];
+  void openUrl(String url) async {
+  final Uri uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,8 +84,10 @@ class HomeView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-               DecoratedBox(decoration: BoxDecoration(
-                border: Border.all(color: Colors.black,),
+               Container(
+                padding: EdgeInsets.all(1),
+                decoration: BoxDecoration(
+                border: Border.all(color: Colors.white,width: 3,),
                 borderRadius: BorderRadius.circular(15.r,),
                ),
                child: Center(
@@ -76,7 +96,7 @@ class HomeView extends StatelessWidget {
                   child: Image( 
                     image: AssetImage("assets/images/p2.jpeg" ,
                   ), 
-                  height: 600.h,
+                  height: 700.h,
                   width: 400.w,
                   fit: BoxFit.cover,)
                 
@@ -106,6 +126,20 @@ class HomeView extends StatelessWidget {
                    ),
                   ),
                   Text('Experience: 3 Years', 
+                  style: TextStyle(
+                    fontSize: 40.sp,
+                    fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                   ),
+                  ), 
+                  Text('Mobile Apps: 20+ ', 
+                  style: TextStyle(
+                    fontSize: 40.sp,
+                    fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                   ),
+                  ),
+                  Text('Windows Apps: 3 ', 
                   style: TextStyle(
                     fontSize: 40.sp,
                     fontWeight: FontWeight.bold,
@@ -141,39 +175,46 @@ class HomeView extends StatelessWidget {
                   },
                   itemCount: appsList.length,
                   itemBuilder: (context,index){
-                    return Container(
-                      width: 300.w,
-                      decoration: BoxDecoration(
-                        color: Colors.white, 
-                        borderRadius: BorderRadius.circular(15.r),
-                        border: Border.all(color: Colors.white,width: 3,)
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: 
-                        [
-                          30.verticalSpace,
-                          Center(
-                            child: Image.asset(appsList[index]['image'].toString()),
-                          ),
-                          60.verticalSpace,
-                           Text(appsList[index]['market'].toString(), 
-                  style: TextStyle(
-                    fontSize: 40.sp,
-                    fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                   ),
-                  ),
-                  30.verticalSpace,
-                   Text(appsList[index]['AppType'].toString(), 
-                  style: TextStyle(
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                   ),
-                  ),
-                        ],
+                    return GestureDetector(
+                      onTap: (){
+                        if(index != 3 && index !=7 && index !=8) {
+                          openUrl(appsList[index]['url'].toString());
+                        }
+                      },
+                      child: Container(
+                        width: 300.w,
+                        decoration: BoxDecoration(
+                          color: Colors.white, 
+                          borderRadius: BorderRadius.circular(15.r),
+                          border: Border.all(color: Colors.white,width: 3,)
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: 
+                          [
+                            30.verticalSpace,
+                            Center(
+                              child: Image.asset(appsList[index]['image'].toString()),
+                            ),
+                            60.verticalSpace,
+                             Text(appsList[index]['market'].toString(), 
+                                        style: TextStyle(
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                                         ),
+                                        ),
+                                        30.verticalSpace,
+                                         Text(appsList[index]['AppType'].toString(), 
+                                        style: TextStyle(
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                                         ),
+                                        ),
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -215,7 +256,8 @@ class HomeView extends StatelessWidget {
                   ),
             30.verticalSpace,
              Text(
-  '''In this mobile application project, I managed complete order flows and implemented key business features across multiple markets. Reverse Calculation was implemented for KFC Pakistan, Lottery & Bonus features were added for Pizza Hut Qatar and other markets, and the PSL deal was successfully integrated in KFC Pakistan. The application was developed using BLoC with Clean Architecture, ensuring stable, end-to-end functionality across all operations.''',
+  '''In this mobile application project, I managed complete order flows and implemented key business features across multiple markets. Reverse Calculation was implemented for KFC Pakistan, Lottery & Bonus features were added for Pizza Hut Qatar and other markets, and the PSL deal was successfully integrated in KFC Pakistan. The application was developed using BLoC with Clean Architecture, ensuring stable, end-to-end functionality across all operations.
+   and many features and functionalities...''',
   textAlign: TextAlign.center,
   style: TextStyle(
     fontSize: 25.sp,
