@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Zeeshan Sheikhs',
          scrollBehavior: MyCustomScrollBehavior(),
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
