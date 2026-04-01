@@ -92,6 +92,7 @@ class HomeView extends StatelessWidget {
           "https://play.google.com/store/apps/details?id=com.sigitechnologies.myacedriverupdated&hl=en",
     },
   ];
+
   List<String> skills = [
     "Flutter",
     "Dart",
@@ -160,7 +161,7 @@ class HomeView extends StatelessWidget {
                   spacing: 20,
                   children: [
                     Text(
-                      'Zeeshan Mehmood Sheikh ',
+                      'Zeeshan Mehmood Sheikhs ',
                       style: TextStyle(
                         fontSize: 40.sp,
                         fontWeight: FontWeight.bold,

@@ -36,6 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   url_launcher: ^6.3.2
+  google_fonts: ^6.1.0
+  animated_text_kit: ^4.2.2
+ # url_launcher: ^6.2.4
+  font_awesome_flutter: ^10.7.0
+  visibility_detector: ^0.4.0+2
+  flutter_animate: ^4.5.0
+
 
 dev_dependencies:
   flutter_test:
